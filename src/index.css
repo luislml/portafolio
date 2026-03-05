@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth overflow-x-hidden;
+  }
+
+  body {
+    @apply m-0 p-0 overflow-x-hidden bg-black text-white;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  ::selection {
+    @apply bg-blue-500/30 text-white;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-black;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-zinc-900 rounded-full hover:bg-zinc-800;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold m-0;
+  }
+
+  a {
+    @apply text-inherit no-underline transition-colors duration-300;
+  }
+
+  a:hover {
+    @apply text-blue-500;
+  }
+}
+
+@layer components {
+
+  /* =============================
+     Hero (Botón Específico)
+     ============================= */
+  .hero-button {
+    @apply inline-block px-6 py-3 rounded-lg border border-white bg-transparent text-white font-medium no-underline transition-all duration-300 hover:bg-white hover:text-black;
+  }
+
+  /* =============================
+     Footer (Pie de Página)
+     ============================= */
+  .footer {
+    @apply text-center py-8 px-4 border-t border-zinc-800 text-zinc-400 text-sm;
+  }
+
+  /* =============================
+     Efecto de Borde Brillante (Conic Gradient)
+     ============================= */
+  .glowing-border {
+    @apply relative bg-zinc-950 rounded-[inherit];
+  }
+
+  .glowing-border::before {
+    content: "";
+    @apply absolute inset-0 p-[2px] rounded-[inherit] pointer-events-none;
+    background: conic-gradient(from var(--gradient-angle),
+        rgba(59, 130, 246, 0.1) 0deg,
+        rgba(59, 130, 246, 0.1) 60deg,
+        rgba(59, 130, 246, 1) 120deg,
+        rgba(59, 130, 246, 0.1) 180deg,
+        rgba(59, 130, 246, 0.1) 240deg,
+        rgba(147, 51, 234, 1) 300deg,
+        rgba(59, 130, 246, 0.1) 360deg);
+    mask: conic-gradient(#000 0 0) content-box exclude, conic-gradient(#000 0 0);
+    -webkit-mask: conic-gradient(#000 0 0) content-box exclude, conic-gradient(#000 0 0);
+    animation: spinning 4s linear infinite;
+    z-index: 10;
+  }
+}
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes spinning {
+  0% {
+    --gradient-angle: 0deg;
+  }
+
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
